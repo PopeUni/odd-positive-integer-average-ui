@@ -6,51 +6,42 @@
 import express from 'express';
 import { averageOddPositiveIntegers } from './util';
 
-
 const app = express();
 app.use(express.json());
 
-
-//const data: number[] = [1,2,3,4,5];
-
 var port = 0;
-//console.log(process.argv);
 let host = process.argv[2];
 const data: number[] = JSON.parse(process.argv[3]);
+var result: number = averageOddPositiveIntegers(data);
 
-
-const result: number = averageOddPositiveIntegers(data);
 
 app.post('/odd-positive-average-ui', (req, res) => {
     
-    //const result: number = averageOddPositiveIntegers(data);
-
-    if(result == null)
+    if(result == 0 )
     {
-        res.status(400).send("result is null");
+        res.status(400).send("no odd positive integers is given array"); 
     }
     else
     {   res.set({ 'content-type': 'application/json'});
         res.status(200).send({result});
+
+        console.log("yes you can post to console in post function")
     }
 
 });
 
-//console.log('hello world!');
-//console.log('test number 2');
-//console.log(result);
-console.log("Average of all odd positive integers " + result);
 
-if(host == "http://localhost:3030")
-{
-    //console.log("port is 3030");
-     port = 3030;
-    app.listen(port);
+if(result == 0){
+    console.log("No odd positive numbers supplied in given array"); 
+}else {
+    console.log("Average of all odd positive integers " + result);
 }
-else
-{
-    console.log("server chosen is not avaliable");
-}
+
+
+var testport = host.substr(host.length - 4);
+//console.log(testport);
+app.listen(parseInt(testport));
+
 
 
 

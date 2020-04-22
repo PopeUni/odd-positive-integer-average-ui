@@ -1,6 +1,7 @@
 {
   "name": "odd-positive-integer-average-ui",
   "version": "0.0.0",
+  "proxy": "http://localhost:3003",
   "description": "Boilerplate ui project setup for students to use",
   "main": "./src/cli.ts",
   "bin": {
